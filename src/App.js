@@ -41,7 +41,7 @@ const App = () => {
             <div className="container">
               {
                 movies.map((movie) => (
-                  <MovieCard movie_one={movie} />
+                  <MovieCard movie={movie} />
                 ))
               }
             </div>
