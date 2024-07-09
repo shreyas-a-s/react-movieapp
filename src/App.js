@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import "./App.css";
 import SearchIcon from "./search.svg";
@@ -11,6 +11,7 @@ const API_URL = "https://www.omdbapi.com/?apikey=bdfab4f8"
 const App = () => {
   const [movies, setMovies] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
+  const focusRef = useRef();
 
   const searchMovies = async (title) => {
     const response = await fetch(`${API_URL}&s=${title}`);
@@ -22,6 +23,9 @@ const App = () => {
   const handleKeyDown = (e) => {
     if (e.code === "Enter") {
       searchMovies(searchTerm);
+      if (focusRef.current) {
+        focusRef.current.blur();
+      }
     }
   };
 
@@ -34,6 +38,7 @@ const App = () => {
       <h1>Movie Fusion</h1>
       <div className="search">
         <input
+          ref={focusRef}
           placeholder="Search for movies"
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
