@@ -44,7 +44,7 @@ const App = () => {
           ? (
             <div className="container">
               {
-                movies.map((movie) => (
+                movies.slice(0, 9).map((movie) => (
                   <MovieCard movie={movie} />
                 ))
               }
