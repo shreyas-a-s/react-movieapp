@@ -19,6 +19,12 @@ const App = () => {
     setMovies(data.Search);
   }
 
+  const handleKeyDown = (e) => {
+    if (e.code === "Enter") {
+      searchMovies(searchTerm);
+    }
+  };
+
   useEffect(() => {
     searchMovies("action");
   }, []);
@@ -31,6 +37,7 @@ const App = () => {
           placeholder="Search for movies"
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
+          onKeyDown={handleKeyDown}
         />
         <img
           src={SearchIcon}
